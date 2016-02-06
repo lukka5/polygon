@@ -1,4 +1,4 @@
-from decimal import Decimal
+from django.contrib.gis.geos import Point
 
 from rest_framework import generics
 from rest_framework.decorators import api_view
@@ -42,13 +42,12 @@ class PolygonDetail(generics.RetrieveUpdateDestroyAPIView):
 
 @api_view(['GET'])
 def polygons_with_point(request, lat, lng):
-    polygons = list()
-    coordinate = [Decimal(lat), Decimal(lng)]
+    point = Point(float(lat), float(lng))
 
-    for p in Polygon.objects.all():
-        for hole in p.polygon['coordinates']:
-            if coordinate in hole:
-                polygons.append(p)
+    # Maybe? Is this is '__contains' of Geos or Django's orm?
+    # Seems to be the one from Geos:
+    #     https://docs.djangoproject.com/en/1.9/ref/contrib/gis/geoquerysets/#contains
+    polygons = Polygon.objects.filter(polygon__contains=point)
 
     serializer = PolygonSerializer(polygons, many=True)
     return Response(serializer.data)
