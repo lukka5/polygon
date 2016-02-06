@@ -1,0 +1,5 @@
+app_versions/
+static/
+venv/
+*.pyc
+*.sqlite3
