@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     # Third-party
     'rest_framework',
     'rest_framework_docs',
+    'rest_framework_gis',
     # Local
     'area',
 )
@@ -82,8 +83,8 @@ WSGI_APPLICATION = 'mozio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.contrib.gis.db.backends.spatialite',
+        'NAME': os.path.join(BASE_DIR, 'db.gis.sqlite3'),
     }
 }
 

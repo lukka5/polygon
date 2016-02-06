@@ -2,7 +2,7 @@ import collections
 
 from django.conf import settings
 from django.core.validators import RegexValidator
-from django.db import models
+from django.contrib.gis.db import models
 
 from jsonfield import JSONField
 
@@ -24,4 +24,4 @@ class Polygon(models.Model):
     provider = models.ForeignKey(Provider, related_name='polygons')
     name = models.CharField(max_length=256)
     price = models.DecimalField(decimal_places=2, max_digits=10)
-    polygon = JSONField(load_kwargs={'object_pairs_hook': collections.OrderedDict})
+    polygon = models.PolygonField()

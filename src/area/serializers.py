@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework_gis.serializers import GeoModelSerializer
 
 from .models import Polygon, Provider
 
@@ -11,9 +12,8 @@ class ProviderSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'email', 'phone', 'language', 'currency', 'polygons')
 
 
-class PolygonSerializer(serializers.ModelSerializer):
+class PolygonSerializer(GeoModelSerializer):
     provider = serializers.ReadOnlyField(source='provider.name')
-    polygon = serializers.JSONField()
 
     class Meta:
         model = Polygon
