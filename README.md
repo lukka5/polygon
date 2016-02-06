@@ -19,3 +19,9 @@ http://lucas-polygon.us-west-2.elasticbeanstalk.com/docs/
     
     # Get all polygons that contain the point (only in their bounds, would be nice to properly implement this)
     http localhost:8083/polygons/point/100.0/700.0/
+
+## Requirements
+
+In addition the ones specified in `requirements.txt` in order to use [GeoDjango](https://docs.djangoproject.com/en/1.9/ref/contrib/gis/) with [Spatialite](http://www.gaia-gis.it/gaia-sins/) you'll need the following packages (Debian based dist):
+
+    $ sudo apt-get install binutils libproj-dev gdal-bin spatialite-bin
