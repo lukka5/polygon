@@ -4,7 +4,7 @@ from .models import Polygon, Provider
 
 
 class ProviderSerializer(serializers.ModelSerializer):
-    polygons = serializers.PrimaryKeyRelatedField(many=True, queryset=Polygon.objects.all())
+    polygons = serializers.PrimaryKeyRelatedField(many=True, queryset=Polygon.objects.all(), required=False)
 
     class Meta:
         model = Provider
